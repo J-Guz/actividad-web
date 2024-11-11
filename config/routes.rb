@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  get '/' , to:'static_pages#index'
+  get '/' , to:'static_pages#index' 
   resources :items
-  post 'create_item', to: 'static_pages#create_item'
+  #post 'create_item', to: 'static_pages#create_item'
 
   # Defines the root path route ("/")
   # root "posts#index"

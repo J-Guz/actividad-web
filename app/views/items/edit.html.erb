@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Editar Ítem</h1>
+
+  <% if user_signed_in? %>
+    <%= form_with model: @item, local: true do |form| %>
+      
+      <div class="field">
+        <%= form.label :description, "Descripción" %>
+        <%= form.text_area :description, rows: 1, placeholder: "descripción", value: @item.description %>
+      </div>
+
+      <div class="field">
+        <%= form.label :done, "Marcar como completado" %>
+        <%= form.check_box :done, checked: @item.done %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Actualizar Ítem" %>
+      </div>
+      
+    <% end %>
+
+    <%= link_to 'Volver a la lista', items_path %>
+    
+  <% else %>
+    <h2>Por favor inicie sesión para editar el ítem.</h2>
+    <%= link_to 'Log in', new_user_session_path %>
+  <% end %>
+</div>

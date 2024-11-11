@@ -1,16 +1,15 @@
 <div class="container">
-    <h1>Items Pendientes</h1>
+    <h1>Pendientes</h1>
 
     <% if user_signed_in? %>
 
-        <%= form_with url: create_item_path, method: :post, local: true do |form| %>
+        <%= form_with model: @new_item, local: true do |form| %>
         <div class="field">
-            <%= form.label :description, "Descripción del Item" %>
-            <%= form.text_area :description, rows: 1, placeholder: "Ingresa la descripción del item" %>
+            <%= form.text_area :description, rows: 1, placeholder: "Ingresa la descripción" %>
         </div>
 
         <div class="actions">
-            <%= form.submit "Guardar Item" %>
+            <%= form.submit "Guardar" %>
         </div>
         <% end %>
 
@@ -18,12 +17,15 @@
         <ul>
             <% @items.each do |item| %>
             <li>
-                <strong><%= item.description %></strong><br>
-                Hecho: <%= item.done ? 'Sí' : 'No' %><br>
+                <strong><%= item.description %></strong>
+                <%= link_to 'Editar', edit_item_path(item), class: 'btn btn-warning btn-sm' %>
+                <br>
+                Hecho: <%= item.done ? 'Sí' : 'No' %>
+                <br>
                 Creado el: <%= item.created_date.strftime("%B %d, %Y") %><br>
                 <hr>
             </li>
-        <% end %>
+            <% end %>
         </ul>
         <% else %>
             <p>No hay ítems pendientes.</p>

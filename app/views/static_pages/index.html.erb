@@ -1,1 +1,36 @@
-<h1>hola</h1>
+<div class="container">
+    <h1>Items Pendientes</h1>
+
+    <% if user_signed_in? %>
+
+        <%= form_with url: create_item_path, method: :post, local: true do |form| %>
+        <div class="field">
+            <%= form.label :description, "Descripción del Item" %>
+            <%= form.text_area :description, rows: 1, placeholder: "Ingresa la descripción del item" %>
+        </div>
+
+        <div class="actions">
+            <%= form.submit "Guardar Item" %>
+        </div>
+        <% end %>
+
+        <% if @items.any? %>
+        <ul>
+            <% @items.each do |item| %>
+            <li>
+                <strong><%= item.description %></strong><br>
+                Hecho: <%= item.done ? 'Sí' : 'No' %><br>
+                Creado el: <%= item.created_date.strftime("%B %d, %Y") %><br>
+                <hr>
+            </li>
+        <% end %>
+        </ul>
+        <% else %>
+            <p>No hay ítems pendientes.</p>
+        <% end %>
+    <% else %>
+        <h1>Por favor inicie sesion para ver sus items<h1>
+          <%= link_to 'Log in', new_user_session_path %>
+    <% end %>
+
+</div>

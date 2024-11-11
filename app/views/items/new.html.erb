@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Nuevo Item</h1>
+
+<%= form_with model: @item, local: true do |form| %>
+  <div class="field">
+    <%= form.label :description %><br>
+    <%= form.text_area :description, rows: 4 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :done, "¿Está terminado?" %><br>
+    <%= form.check_box :done %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Crear Item" %>
+  </div>
+<% end %>
+
+<%= link_to 'Volver a la lista de Items', items_path %>
+
+</div>

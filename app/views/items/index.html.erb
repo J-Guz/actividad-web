@@ -1,0 +1,19 @@
+<div class="container">
+    <h1 class="mb-4">Terminados</h1>
+
+    <% @items.each do |item| %>
+    <div class="card text-center">
+    <div class="card-header">
+        <%=item.description%>
+    </div>
+    <div class="card-body">
+        <p class="card-text"><strong>Fecha de creación:</strong> <%= item.created_date.strftime("%B %d, %Y") %></p>
+        <div class="mt-1">
+            <%= link_to 'Editar', edit_item_path(item), class: 'btn btn-warning btn-sm' %>
+            <%= link_to 'Eliminar', item_path(item), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm' %>
+        </div>
+    </div>
+    </div>
+    <% end %>
+    
+</div>
